@@ -22,7 +22,16 @@ else:
     device = torch.device('cpu')
 
 # 2.加载数据集，导入数据
+# transform = transforms.Compose([
+#     transforms.ToTensor(),
+#     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+# ])
+# 上面采用常规的数据处理方式，准确率只有82.27%，尝试数据增强，是否可以提升准确率
 transform = transforms.Compose([
+    # transforms.RandomHorizontalFlip(), # 随机水平翻转
+    # transforms.RandomRotation(15), # 随机旋转
+    # transforms.RandomCrop(32, padding=4), # 随机裁剪
+    # transforms.ColorJitter(brightness=0.05, contrast=0.05, saturation=0.05, hue=0.05), # 随机颜色变换
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
@@ -94,7 +103,7 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1) #
 loss_fn = nn.CrossEntropyLoss()
 
 # 6.训练模型
-num_epochs = 5
+num_epochs = 20
 for epoch in range(num_epochs):
     model.train() # 训练模式
     running_loss = 0.0

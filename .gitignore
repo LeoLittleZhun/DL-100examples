@@ -24,3 +24,4 @@ models/news_classification_model/special_tokens_map.json
 models/news_classification_model/tokenizer_config.json
 models/news_classification_model/tokenizer.json
 models/news_classification_model/vocab.txt
+models/cifar10/cifar10_cnn.pth
