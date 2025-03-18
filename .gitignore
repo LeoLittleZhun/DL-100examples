@@ -25,3 +25,12 @@ models/news_classification_model/tokenizer_config.json
 models/news_classification_model/tokenizer.json
 models/news_classification_model/vocab.txt
 models/cifar10/cifar10_cnn.pth
+data/FashionMNIST/raw/t10k-images-idx3-ubyte
+data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz
+data/FashionMNIST/raw/t10k-labels-idx1-ubyte
+data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz
+data/FashionMNIST/raw/train-images-idx3-ubyte
+data/FashionMNIST/raw/train-images-idx3-ubyte.gz
+data/FashionMNIST/raw/train-labels-idx1-ubyte
+data/FashionMNIST/raw/train-labels-idx1-ubyte.gz
+models/fashion_mnist_cnn.pth
