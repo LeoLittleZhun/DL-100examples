@@ -6,6 +6,7 @@
 @Author  :   ljc 
 @Version :   1.0
 @Desc    :   花朵识别
+conclu   :   自己手搓CNN还是差别比较大，很难上升准确率，只有56%左右，调整到resnet18，准确率立马上升到95.1%
 '''
 
 # here put the import lib
