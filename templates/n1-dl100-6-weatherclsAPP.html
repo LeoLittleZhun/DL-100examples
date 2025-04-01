@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气图片预测</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .result .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>天气图片预测</h1>
+    <form id="upload-form" enctype="multipart/form-data">
+        <label for="image-upload">选择图片：</label>
+        <input type="file" id="image-upload" name="image" accept="image/*" required>
+        <button type="submit">上传并预测</button>
+    </form>
+
+    <div class="result" id="result" style="display:none;">
+        <h3>预测结果：</h3>
+        <p><span class="label">预测标签：</span><span id="predicted-label"></span></p>
+        <p><span class="label">预测概率：</span><span id="predicted-prob"></span></p>
+        <h4>各类概率：</h4>
+        <ul id="all-probs"></ul>
+    </div>
+</div>
+
+<script>
+    document.getElementById('upload-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // 防止表单默认提交行为
+
+        let formData = new FormData();
+        let imageFile = document.getElementById('image-upload').files[0];
+        formData.append('image', imageFile);
+
+        fetch('http://127.0.0.1:8080/predict', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.predicted_label) {
+                // 显示预测结果
+                document.getElementById('predicted-label').textContent = data.predicted_label;
+                document.getElementById('predicted-prob').textContent = (data.predicted_prob * 100).toFixed(2) + '%';
+                
+                // 显示各类的概率
+                let allProbsList = document.getElementById('all-probs');
+                allProbsList.innerHTML = ''; // 清空以前的内容
+                for (const [label, prob] of Object.entries(data.all_probs)) {
+                    let li = document.createElement('li');
+                    li.textContent = `${label}: ${(prob * 100).toFixed(2)}%`;
+                    allProbsList.appendChild(li);
+                }
+
+                // 显示结果区域
+                document.getElementById('result').style.display = 'block';
+            } else {
+                alert('没有得到有效的预测结果。');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('上传失败，请重试。');
+        });
+    });
+</script>
+
+</body>
+</html>
