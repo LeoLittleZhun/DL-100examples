@@ -5434,3 +5434,6 @@ data/weather_photos/sunrise/sunrise356.jpg
 data/weather_photos/sunrise/sunrise357.jpg
 .DS_Store
 data/models/5_weather_cls_resnet18.pth
+models/5_weather_cls_resnet18.pth
+models/5_weather_cls_resnet34.pth
+models/7_CatAndDog_cls_vgg16.pth
