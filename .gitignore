@@ -5437,3 +5437,10 @@ data/models/5_weather_cls_resnet18.pth
 models/5_weather_cls_resnet18.pth
 models/5_weather_cls_resnet34.pth
 models/7_CatAndDog_cls_vgg16.pth
+models/yolov12x.pt
+.DS_Store
+.DS_Store
+yolo11n.pt
+yolov8x.pt
+yolov8n.pt
+yolov8m.pt
